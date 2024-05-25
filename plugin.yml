@@ -1,0 +1,21 @@
+name: MoneySystem
+version: 1.0.0
+author: Farmero
+api: 5.0.0
+main: Farmero\moneysystem\MoneySystem
+
+permissions:
+  moneysystem.cmd.addmoney:
+    default: op
+  moneysystem.cmd.removemoney:
+    default: op
+  moneysystem.cmd.setmoney:
+    default: op
+  moneysystem.cmd.paymoney:
+    default: true
+  moneysystem.cmd.mymoney:
+    default: true
+  moneysystem.cmd.seemoney:
+    default: true
+  moneysystem.cmd.topmoney:
+    default: true
