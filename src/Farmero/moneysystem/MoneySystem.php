@@ -6,6 +6,9 @@ namespace Farmero\moneysystem;
 
 use pocketmine\plugin\PluginBase;
 
+use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerJoinEvent;
+
 use Farmero\moneysystem\MoneyManager;
 
 use Farmero\moneysystem\Commands\SetMoneyCommand;
@@ -16,7 +19,7 @@ use Farmero\moneysystem\Commands\MyMoneyCommand;
 use Farmero\moneysystem\Commands\TopMoneyCommand;
 use Farmero\moneysystem\Commands\PayMoneyCommand;
 
-class MoneySystem extends PluginBase {
+class MoneySystem extends PluginBase implements Listener {
 
     private static $instance;
     private $moneyManager;
@@ -28,6 +31,7 @@ class MoneySystem extends PluginBase {
     public function onEnable(): void {
         $this->moneyManager = new MoneyManager($this);
         $this->registerCommands();
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
     private function registerCommands() {
@@ -48,5 +52,15 @@ class MoneySystem extends PluginBase {
 
     public function getMoneyManager(): MoneyManager {
         return $this->moneyManager;
+    }
+
+    public function onPlayerJoin(PlayerJoinEvent $event): void {
+        $player = $event->getPlayer();
+        $moneyManager = $this->getMoneyManager();
+        $moneyData = $moneyManager->getAllMoneyData();
+
+        if (!isset($moneyData[strtolower($player->getName())])) {
+            $moneyManager->setMoney($player, $this->getConfig()->get("starting_money"));
+        }
     }
 }
