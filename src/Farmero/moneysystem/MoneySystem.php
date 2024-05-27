@@ -22,7 +22,7 @@ use Farmero\moneysystem\Commands\PayMoneyCommand;
 class MoneySystem extends PluginBase implements Listener {
 
     private static $instance;
-    private $moneyManager;
+    private ?MoneyManager $moneyManager = null;
 
     public function onLoad(): void {
         self::$instance = $this;
@@ -51,6 +51,9 @@ class MoneySystem extends PluginBase implements Listener {
     }
 
     public function getMoneyManager(): MoneyManager {
+        if ($this->moneyManager === null) {
+            throw new \RuntimeException("MoneyManager is not initialized");
+        }
         return $this->moneyManager;
     }
 
