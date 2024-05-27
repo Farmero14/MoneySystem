@@ -21,8 +21,7 @@ use Farmero\moneysystem\Commands\PayMoneyCommand;
 
 class MoneySystem extends PluginBase implements Listener {
 
-    private static $instance;
-    private $moneyManager;
+    private static $instance
 
     public function onLoad(): void {
         self::$instance = $this;
