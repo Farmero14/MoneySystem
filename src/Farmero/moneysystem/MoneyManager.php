@@ -6,24 +6,23 @@ namespace Farmero\moneysystem;
 
 use pocketmine\player\Player;
 use pocketmine\utils\Config;
-
 use Farmero\moneysystem\MoneySystem;
 
 class MoneyManager {
 
-    private $plugin;
-    private $moneyData;
+    private MoneySystem $plugin;
+    private Config $moneyData;
 
     public function __construct(MoneySystem $plugin) {
         $this->plugin = $plugin;
         $this->initMoneyData();
     }
 
-    private function initMoneyData() {
+    private function initMoneyData(): void {
         $this->moneyData = new Config($this->plugin->getDataFolder() . "Money_Data.json", Config::JSON);
     }
 
-    public function setMoney(Player $player, int $amount) {
+    public function setMoney(Player $player, int $amount): void {
         $this->moneyData->set(strtolower($player->getName()), $amount);
         $this->moneyData->save();
     }
@@ -34,13 +33,13 @@ class MoneyManager {
         $this->setMoney($player, $newMoney);
     }
 
-    public function removeMoney(Player $player, int $amount) {
+    public function removeMoney(Player $player, int $amount): void {
         $currentMoney = $this->getMoney($player);
         $newMoney = max(0, $currentMoney - $amount);
         $this->setMoney($player, $newMoney);
     }
 
-    public function getMoney(Player $player) {
+    public function getMoney(Player $player): int {
         $playerName = strtolower($player->getName());
         $moneyDataArray = $this->moneyData->getAll();
         return $moneyDataArray[$playerName] ?? 0;
