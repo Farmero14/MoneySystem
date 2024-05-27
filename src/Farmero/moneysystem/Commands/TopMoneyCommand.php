@@ -13,7 +13,7 @@ class TopMoneyCommand extends Command {
 
     public function __construct() {
         parent::__construct("topmoney", "Show the top players by money balance", "/topmoney");
-        $this->setPermission("moneysystem.command.topmoney");
+        $this->setPermission("moneysystem.cmd.topmoney");
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
