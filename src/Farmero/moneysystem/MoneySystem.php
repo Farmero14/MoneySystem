@@ -9,7 +9,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 
-use Farmero\moneysystem\moneyManager;
+use Farmero\moneysystem\MoneyManager;
 
 use Farmero\moneysystem\Commands\SetMoneyCommand;
 use Farmero\moneysystem\Commands\AddMoneyCommand;
