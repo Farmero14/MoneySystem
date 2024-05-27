@@ -9,7 +9,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 
-use Farmero\moneysystem\MoneyManager;
+use Farmero\moneysystem\moneyManager;
 
 use Farmero\moneysystem\Commands\SetMoneyCommand;
 use Farmero\moneysystem\Commands\AddMoneyCommand;
@@ -22,7 +22,7 @@ use Farmero\moneysystem\Commands\PayMoneyCommand;
 class MoneySystem extends PluginBase implements Listener {
 
     private static $instance;
-    private ?MoneyManager $moneyManager = null;
+    private $moneyManager;
 
     public function onLoad(): void {
         self::$instance = $this;
@@ -51,10 +51,7 @@ class MoneySystem extends PluginBase implements Listener {
     }
 
     public function getMoneyManager(): MoneyManager {
-        if ($this->moneyManager === null) {
-            throw new \RuntimeException("MoneyManager is not initialized");
-        }
-        return $this->moneyManager;
+        return $this->moneyManager = new MoneyManager($this);
     }
 
     public function onPlayerJoin(PlayerJoinEvent $event): void {
