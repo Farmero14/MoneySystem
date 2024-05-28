@@ -22,7 +22,7 @@ use Farmero\moneysystem\Commands\PayMoneyCommand;
 class MoneySystem extends PluginBase implements Listener {
 
     private static $instance;
-    public static $moneyManager;
+    private $moneyManager;
 
     public function onLoad(): void {
         self::$instance = $this;
@@ -50,7 +50,7 @@ class MoneySystem extends PluginBase implements Listener {
         return self::$instance;
     }
 
-    public static function getMoneyManager(): MoneyManager {
+    public function getMoneyManager(): MoneyManager {
         return $this->moneyManager;
     }
 
