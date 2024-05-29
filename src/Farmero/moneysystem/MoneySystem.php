@@ -60,7 +60,8 @@ class MoneySystem extends PluginBase implements Listener {
         $moneyData = $moneyManager->getAllMoneyData();
 
         if (!isset($moneyData[strtolower($player->getName())])) {
-            $moneyManager->setMoney($player, $this->getConfig()->get("starting_money"));
+            $startingMoney = intval($this->getConfig()->get("starting_money"));
+            $moneyManager->setMoney($player, $startingMoney);
         }
     }
 }
