@@ -52,7 +52,7 @@ class MoneySystem extends PluginBase implements Listener {
 
     private function registerEvents() {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getPluginManager()->registerEvents($this->economyScoreHud, $this);
+        $this->getServer()->getPluginManager()->registerEvents($this->moneyScoreHud, $this);
     }
 
     public static function getInstance(): self {
