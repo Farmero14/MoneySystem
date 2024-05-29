@@ -2,6 +2,7 @@
 Mostly for my server but its open source so go crazy!
 
 **ScoreHud Tags**
+
 Requires ScoreHud by Ifera
 `{moneysystem.balance}`
 
