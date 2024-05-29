@@ -4,6 +4,8 @@ author: Farmero
 api: 5.0.0
 main: Farmero\moneysystem\MoneySystem
 
+softdepend: ScoreHud
+
 permissions:
   moneysystem.cmd.addmoney:
     default: op
