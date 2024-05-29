@@ -11,6 +11,8 @@ use pocketmine\event\player\PlayerJoinEvent;
 
 use Farmero\moneysystem\MoneyManager;
 
+use Farmero\moneysystem\ScoreHud\MoneyScoreHud;
+
 use Farmero\moneysystem\Commands\SetMoneyCommand;
 use Farmero\moneysystem\Commands\AddMoneyCommand;
 use Farmero\moneysystem\Commands\RemoveMoneyCommand;
@@ -23,6 +25,7 @@ class MoneySystem extends PluginBase implements Listener {
 
     private static $instance;
     private $moneyManager;
+    private $moneyScoreHud;
 
     public function onLoad(): void {
         self::$instance = $this;
@@ -30,8 +33,9 @@ class MoneySystem extends PluginBase implements Listener {
 
     public function onEnable(): void {
         $this->moneyManager = new MoneyManager($this);
+        $this->moneyScoreHud = new MoneyScoreHud($this);
         $this->registerCommands();
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $this->registerEvents();
     }
 
     private function registerCommands() {
@@ -44,6 +48,11 @@ class MoneySystem extends PluginBase implements Listener {
             new TopMoneyCommand(),
             new PayMoneyCommand()
         ]);
+    }
+
+    private function registerEvents() {
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $this->getServer()->getPluginManager()->registerEvents($this->economyScoreHud, $this);
     }
 
     public static function getInstance(): self {
@@ -63,5 +72,6 @@ class MoneySystem extends PluginBase implements Listener {
             $startingMoney = intval($this->getConfig()->get("starting_money"));
             $moneyManager->setMoney($player, $startingMoney);
         }
+        $this->moneyScoreHud->updateScoreHudTags($player);
     }
 }
