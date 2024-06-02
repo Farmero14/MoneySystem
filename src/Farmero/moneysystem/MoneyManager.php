@@ -11,16 +11,14 @@ use Farmero\moneysystem\MoneySystem;
 
 class MoneyManager {
 
-    private $plugin;
     private $moneyData;
 
-    public function __construct(MoneySystem $plugin) {
-        $this->plugin = $plugin;
+    public function __construct() {
         $this->initMoneyData();
     }
 
     private function initMoneyData() {
-        $this->moneyData = new Config($this->plugin->getDataFolder() . "Money_Data.json", Config::JSON);
+        $this->moneyData = new Config(MoneySystem::getInstance()->getDataFolder() . "Money_Data.json", Config::JSON);
     }
 
     public function setMoney(Player $player, int $amount) {
@@ -48,5 +46,21 @@ class MoneyManager {
 
     public function getAllMoneyData(): array {
         return $this->moneyData->getAll();
+    }
+
+    public function formatMoney(int $amount): string {
+        if ($amount >= 1e15) {
+            return number_format($amount / 1e15, 2) . 'q';
+        } elseif ($amount >= 1e12) {
+            return number_format($amount / 1e12, 2) . 't';
+        } elseif ($amount >= 1e9) {
+            return number_format($amount / 1e9, 2) . 'b';
+        } elseif ($amount >= 1e6) {
+            return number_format($amount / 1e6, 2) . 'm';
+        } elseif ($amount >= 1e3) {
+            return number_format($amount / 1e3, 2) . 'k';
+        } else {
+            return (string)$amount;
+        }
     }
 }
