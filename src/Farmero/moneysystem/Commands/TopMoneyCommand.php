@@ -30,7 +30,8 @@ class TopMoneyCommand extends Command {
 
         $sender->sendMessage("Top 10 players by money balance:");
         foreach ($topPlayers as $playerName => $money) {
-            $sender->sendMessage("- $playerName: $money");
+            $formattedMoney = $moneyManager->formatMoney($money);
+            $sender->sendMessage("- $playerName: $formattedMoney");
         }
 
         return true;
