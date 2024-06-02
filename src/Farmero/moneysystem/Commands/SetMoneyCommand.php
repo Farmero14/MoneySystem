@@ -7,7 +7,6 @@ namespace Farmero\moneysystem\Commands;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-
 use Farmero\moneysystem\MoneySystem;
 
 class SetMoneyCommand extends Command {
@@ -41,7 +40,8 @@ class SetMoneyCommand extends Command {
 
         $moneyManager = MoneySystem::getInstance()->getMoneyManager();
         $moneyManager->setMoney($player, $amount);
-        $sender->sendMessage("Set $amount for " . $player->getName() . "'s account.");
+        $formattedAmount = $moneyManager->formatMoney($amount);
+        $sender->sendMessage("Set $formattedAmount for " . $player->getName() . "'s account.");
 
         return true;
     }
