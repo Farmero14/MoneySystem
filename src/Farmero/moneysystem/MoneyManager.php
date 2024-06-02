@@ -49,18 +49,14 @@ class MoneyManager {
     }
 
     public function formatMoney(int $amount): string {
-        if ($amount >= 1e15) {
-            return number_format($amount / 1e15, 2) . 'q';
-        } elseif ($amount >= 1e12) {
-            return number_format($amount / 1e12, 2) . 't';
-        } elseif ($amount >= 1e9) {
-            return number_format($amount / 1e9, 2) . 'b';
-        } elseif ($amount >= 1e6) {
-            return number_format($amount / 1e6, 2) . 'm';
-        } elseif ($amount >= 1e3) {
-            return number_format($amount / 1e3, 2) . 'k';
+        if ($money >= 1000000000) {
+            return number_format($money / 1000000000, 1) . "b";
+        } elseif ($money >= 1000000) {
+            return number_format($money / 1000000, 1) . "m";
+        } elseif ($money >= 1000) {
+            return number_format($money / 1000, 1) . "k";
         } else {
-            return (string)$amount;
+            return (string)$money;
         }
     }
 }
