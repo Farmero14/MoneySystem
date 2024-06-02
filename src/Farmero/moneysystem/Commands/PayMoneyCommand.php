@@ -49,7 +49,8 @@ class PayMoneyCommand extends Command {
 
         $moneyManager->removeMoney($sender, $amount);
         $moneyManager->addMoney($player, $amount);
-        $sender->sendMessage("Paid $amount to " . $player->getName());
+        $formattedAmount = $moneyManager->formatMoney($amount);
+        $sender->sendMessage("Paid $formattedAmount to " . $player->getName());
 
         return true;
     }
