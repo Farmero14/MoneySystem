@@ -1,6 +1,6 @@
 name: MoneySystem
-version: 2.1.0
+version: 1.0.0
 antigen: Farmero\moneysystem
 api: [5.0.0]
-authors: [Farmero
+authors: [Farmero]
 description: Handles a money system in Minecraft Bedrock
