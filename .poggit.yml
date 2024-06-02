@@ -1,8 +1,10 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Farmero14/MoneySystem
 build-by-default: true
 branches:
-- main
+- master
 projects:
   MoneySystem:
     path: ""
+    model: virion
+    type: library
 ...
