@@ -32,7 +32,8 @@ class SeeMoneyCommand extends Command {
 
         if (isset($moneyData[$targetPlayerName])) {
             $balance = $moneyData[$targetPlayerName];
-            $sender->sendMessage("Player $targetPlayerName has a balance of $balance");
+            $formattedBalance = $moneyManager->formatMoney($balance);
+            $sender->sendMessage("Player $targetPlayerName has a balance of $formattedBalance");
         } else {
             $sender->sendMessage("Player $targetPlayerName not found or has no balance");
         }
