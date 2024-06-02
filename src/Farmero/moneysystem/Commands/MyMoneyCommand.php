@@ -29,8 +29,9 @@ class MyMoneyCommand extends Command {
 
         $moneyManager = MoneySystem::getInstance()->getMoneyManager();
         $money = $moneyManager->getMoney($sender);
+        $formattedMoney = $moneyManager->formatMoney($money);
 
-        $sender->sendMessage("Your current money balance: $money");
+        $sender->sendMessage("Your current money balance: $formattedMoney");
 
         return true;
     }
