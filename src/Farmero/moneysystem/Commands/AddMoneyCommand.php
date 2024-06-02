@@ -41,7 +41,8 @@ class AddMoneyCommand extends Command {
 
         $moneyManager = MoneySystem::getInstance()->getMoneyManager();
         $moneyManager->addMoney($player, $amount);
-        $sender->sendMessage("Added $amount to " . $player->getName() . "'s account.");
+        $formattedAmount = $moneyManager->formatMoney($amount);
+        $sender->sendMessage("Added $formattedAmount to " . $player->getName() . "'s account.");
 
         return true;
     }
