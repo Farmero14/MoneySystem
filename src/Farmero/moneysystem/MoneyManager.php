@@ -49,14 +49,14 @@ class MoneyManager {
     }
 
     public function formatMoney(int $amount): string {
-        if ($money >= 1000000000) {
-            return number_format($money / 1000000000, 1) . "b";
-        } elseif ($money >= 1000000) {
-            return number_format($money / 1000000, 1) . "m";
-        } elseif ($money >= 1000) {
-            return number_format($money / 1000, 1) . "k";
+        if ($amount >= 1000000000) {
+            return number_format($amount / 1000000000, 1) . "b";
+        } elseif ($amount >= 1000000) {
+            return number_format($amount / 1000000, 1) . "m";
+        } elseif ($amount >= 1000) {
+            return number_format($amount / 1000, 1) . "k";
         } else {
-            return (string)$money;
+            return (string)$amount;
         }
     }
 }
