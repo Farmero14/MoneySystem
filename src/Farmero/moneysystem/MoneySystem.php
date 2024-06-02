@@ -33,7 +33,7 @@ class MoneySystem extends PluginBase implements Listener {
 
     public function onEnable(): void {
         $this->moneyManager = new MoneyManager();
-        $this->moneyScoreHud = new MoneyScoreHud($this);
+        $this->moneyScoreHud = new MoneyScoreHud();
         $this->registerCommands();
         $this->registerEvents();
     }
