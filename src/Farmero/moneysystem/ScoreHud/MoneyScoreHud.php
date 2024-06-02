@@ -15,21 +15,16 @@ use Farmero\moneysystem\MoneySystem;
 
 class MoneyScoreHud {
 
-    private $plugin;
-
-    public function __construct(MoneySystem $plugin) {
-        $this->plugin = $plugin;
-    }
-
     public function updateScoreHudTags(Player $player): void {
         if (class_exists(ScoreHud::class)) {
-            $moneyManager = $this->plugin->getMoneyManager();
+            $moneyManager = MoneySystem::getInstance()->getMoneyManager();
             $balance = $moneyManager->getMoney($player);
+            $formattedBalance = $moneyManager->formatMoney($balance);
 
             $ev = new PlayerTagsUpdateEvent(
                 $player,
                 [
-                    new ScoreTag("moneysystem.balance", (string)$balance),
+                    new ScoreTag("moneysystem.balance", $formattedBalance),
                 ]
             );
             $ev->call();
@@ -40,11 +35,12 @@ class MoneyScoreHud {
         $player = $event->getPlayer();
         $tag = $event->getTag();
 
-        $moneyManager = $this->plugin->getMoneyManager();
+        $moneyManager = MoneySystem::getInstance()->getMoneyManager();
         $balance = $moneyManager->getMoney($player);
+        $formattedBalance = $moneyManager->formatMoney($balance);
 
         match ($tag->getName()) {
-            "moneysystem.balance" => $tag->setValue((string)$balance),
+            "moneysystem.balance" => $tag->setValue($formattedBalance),
             default => null,
         };
     }
