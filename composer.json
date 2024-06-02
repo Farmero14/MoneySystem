@@ -1,0 +1,15 @@
+{
+    "name": "farmero/moneysystem",
+    "description": "A PocketMine plugin for managing player money.",
+    "version": "1.0.0",
+    "type": "pocketmine-plugin",
+    "license": "MIT",
+    "require": {
+        "pocketmine/pocketmine-mp": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Farmero\\moneysystem\\": "src/Farmero/moneysystem"
+        }
+    }
+}
