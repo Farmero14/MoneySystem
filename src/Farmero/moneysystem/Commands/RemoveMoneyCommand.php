@@ -48,7 +48,8 @@ class RemoveMoneyCommand extends Command {
         }
 
         $moneyManager->removeMoney($player, $amount);
-        $sender->sendMessage("Removed $amount from " . $player->getName() . "'s account.");
+        $formattedAmount = $moneyManager->formatMoney($amount);
+        $sender->sendMessage("Removed $formattedAmount from " . $player->getName() . "'s account.");
 
         return true;
     }
