@@ -5,6 +5,4 @@ branches:
 projects:
   MoneySystem:
     path: ""
-    model: virion
-    type: library
 ...
