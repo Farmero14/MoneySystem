@@ -35,15 +35,3 @@ $economy->getMoney($player);
 ```
 $economy->getAllMoneyData();
 ```
-# Virion
-This plugin is now a virion to fix the PHPStan lint errors, Add this in your *.poggit.yml*
-
-```
-projects:
-  YourPlugin:
-    libs:
-      - src: Farmero/MoneySystem/MoneySystem
-        version: ^1.0.0
-```
-
-Have fun coding! ❤
